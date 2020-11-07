@@ -1,5 +1,4 @@
 <?php
-include(config.php)
 $sql = "Banner1.jpg";
 $result = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($result);
