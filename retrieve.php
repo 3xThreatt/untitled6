@@ -1,11 +1,11 @@
 <?php
-include(config.php)
-$sql = "select name from images where id=1";
+
+$sql = "Banner1.jpg";
 $result = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($result);
 
 $image = $row['name'];
-$image_src = "Banner1.jpg";
+$image_src = "upload/".$image;
 
 ?>
 <img src='<?php echo $image_src;  ?>' >
