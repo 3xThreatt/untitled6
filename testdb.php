@@ -5,22 +5,21 @@ $password = "o7mk03t99ecbrw8c";
 $dbname = "j4hxbdarc69h9toz";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$link = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-  }
-} else {
-  echo "0 results";
+ 
+// Attempt insert query execution
+$sql = "INSERT INTO persons (first_name, last_name, email) VALUES ('Peter', 'Parker', 'peterparker@mail.com')";
+if(mysqli_query($link, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
-$conn->close();
+ 
+// Close connection
+mysqli_close($link);
 ?>
